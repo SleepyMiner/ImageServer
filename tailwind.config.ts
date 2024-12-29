@@ -9,5 +9,9 @@ export default {
 		extend: {}
 	},
 
-	plugins: [typography, forms]
+	daisyui: {
+		themes: ['light', 'dark', 'cupcake']
+	},
+
+	plugins: [typography, forms, require('daisyui')]
 } satisfies Config;
