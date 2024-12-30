@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-	let { children } = $props();
+	export let data;
 </script>
 
 <nav class="navbar">
@@ -9,8 +9,14 @@
 		<form>
 			<input type="text" placeholder="Search" class="input input-bordered w-full max-w-xs" />
 		</form>
-		<a href="/register" class="btn btn-primary">Register</a>
-		<a href="/login" class="btn btn-secondary">Login</a>
+		{#if !data.user}
+			<a href="/register" class="btn btn-primary">Register</a>
+			<a href="/login" class="btn btn-secondary">Login</a>
+		{:else}
+			<p class="text-lg">{data.user.name}</p>
+			<a href="/logout" class="btn btn-secondary">Logout</a>
+		{/if}
 	</div>
 </nav>
-{@render children()}
+
+<slot />

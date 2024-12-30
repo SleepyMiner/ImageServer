@@ -52,6 +52,7 @@
 	"dependencies": {
 		"@tailwindcss/forms": "^0.5.9",
 		"@tailwindcss/typography": "^0.5.15",
+		"imageserver": "file:",
 		"lucide-svelte": "^0.469.0",
 		"pocketbase": "^0.24.0"
 	}

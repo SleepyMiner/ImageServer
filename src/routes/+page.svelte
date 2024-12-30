@@ -1,20 +1,6 @@
 <script lang="ts">
-	import { pb } from '$lib/pocketbase';
-	import { onMount } from 'svelte';
+	export let data;
 	import { POCKETBASE_URL } from '$lib/utils';
-
-	let images: any = [];
-
-	async function getImages() {
-		const records = await pb.collection('images').getFullList();
-
-		console.log(records);
-		return records;
-	}
-
-	onMount(async () => {
-		images = await getImages();
-	});
 </script>
 
 <svelte:head>
@@ -22,9 +8,9 @@
 </svelte:head>
 
 <main>
-	<div class=" mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-		{#each images as image}
-			<div class="card w-96 shadow-xl" id={`${image.id}`}>
+	<div class="card-container mt-10 flex flex-wrap justify-center gap-4">
+		{#each data.images as image}
+			<div class="card w-80 bg-base-300 p-4 shadow-xl" id={`${image.id}`}>
 				<figure>
 					<img
 						src={`${POCKETBASE_URL}/api/files/${image.collectionId}/${image.id}/${image.image}`}
