@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Register - PhotoCloud</title>
+</svelte:head>
+
 <div class="flex h-full w-full flex-col items-center">
 	<h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-base-content">
 		Register for an account

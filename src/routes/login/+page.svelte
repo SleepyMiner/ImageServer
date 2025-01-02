@@ -1,6 +1,10 @@
-<script>
-	export let form;
+<script lang="ts">
+	let { form } = $props();
 </script>
+
+<svelte:head>
+	<title>Login - PhotoCloud</title>
+</svelte:head>
 
 <div class="flex h-full w-full flex-col items-center">
 	<h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-base-content">
