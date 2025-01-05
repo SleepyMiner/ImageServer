@@ -1,7 +1,26 @@
 <script lang="ts">
+	import { enhance, applyAction } from '$app/forms';
+	import { invalidateAll } from '$app/navigation';
 	import { POCKETBASE_URL } from '$lib/utils';
-	import { User } from 'lucide-svelte';
+
 	let { data } = $props();
+	let loading: boolean = $state(false);
+
+	const handleSubmit = () => {
+		loading = true;
+		return async ({ result }) => {
+			switch (result.type) {
+				case 'success':
+					await invalidateAll();
+					break;
+				case 'error':
+					break;
+				default:
+					await applyAction(result);
+			}
+			loading = false;
+		};
+	};
 </script>
 
 <svelte:head>
@@ -18,17 +37,33 @@
 					alt="Profile"
 				/>
 			{:else}
-				<User class="w-24" />
+				<img src={`https://ui-avatars.com/api/?name=${data.userData?.name}`} alt="ProfilePic" />
 			{/if}
 		</div>
-		<form action="?/profile" method="POST" class="flex flex-col gap-6">
+		<form
+			action="?/profile"
+			method="POST"
+			class="flex flex-col gap-6"
+			enctype="multipart/form-data"
+			use:enhance={handleSubmit}
+		>
 			<input
 				type="file"
 				class="file-input file-input-bordered file-input-xs w-full max-w-xs"
 				accept=".jpg,.jpeg,.png,.gif"
 				name="avatar"
+				disabled={loading}
 			/>
-			<button type="submit" class="btn-base-100 btn btn-xs justify-center">Upload</button>
+
+			{#if loading}
+				<div class="flex items-center justify-center">
+					<span class="loading loading-spinner loading-xs"></span>
+				</div>
+			{:else}
+				<button type="submit" class="btn-base-100 btn btn-xs justify-center" disabled={loading}
+					>Upload</button
+				>
+			{/if}
 		</form>
 	</div>
 </div>

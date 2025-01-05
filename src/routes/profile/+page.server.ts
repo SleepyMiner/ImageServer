@@ -1,5 +1,4 @@
-import { redirect } from '@sveltejs/kit';
-import { serializeNonPOJOs } from '$lib/utils';
+import { error, redirect } from '@sveltejs/kit';
 
 export const load = async ({ locals }) => {
 	if (!locals.pb.authStore.isValid) {
@@ -8,11 +7,12 @@ export const load = async ({ locals }) => {
 	try {
 		const userData = await locals.pb.collection('users').getOne(locals.pb.authStore.record?.id);
 		return {
-			userData: userData
+			userData: userData,
+			message: 'success'
 		};
 	} catch (err) {
 		return {
-			error: err
+			message: 'error'
 		};
 	}
 };
@@ -21,18 +21,24 @@ export const actions = {
 	profile: async ({ locals, request }) => {
 		const formData = await request.formData();
 		const body = Object.fromEntries(formData);
-		console.log(body);
 
-		try {
-			await locals.pb
-				.collection('users')
-				.update(locals.pb.authStore.record?.id, { avatar: body.avatar });
-		} catch (err) {
-			console.log(err);
-			return {
-				error: err
-			};
+		if (body.avatar != '') {
+			try {
+				const { name, avatar } = await locals.pb
+					.collection('users')
+					.update(locals.pb.authStore.record?.id, { avatar: body.avatar });
+
+				locals.user.avatar = avatar;
+				locals.user.name = name;
+			} catch (err) {
+				console.log(err);
+
+				throw error(400, 'Something went wrong updating your profile');
+			}
 		}
-		redirect(303, '/profile');
+
+		return {
+			success: true
+		};
 	}
 };

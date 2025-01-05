@@ -1,7 +1,8 @@
 <script lang="ts">
 	import '../app.css';
+	import { POCKETBASE_URL } from '$lib/utils';
 
-	import { Ellipsis, CircleUserRound, LogOut, Search } from 'lucide-svelte';
+	import { Ellipsis, CircleUserRound, Search } from 'lucide-svelte';
 	let { children, data } = $props();
 </script>
 
@@ -38,25 +39,37 @@
 				</ul>
 			</div>
 		{:else}
+			<div class="hidden lg:block">
+				<a href="/upload" class="btn btn-info btn-sm">Upload Image</a>
+			</div>
 			<div class="dropdown dropdown-end">
 				<div tabindex="0" role="button" class="btn btn-circle btn-ghost">
 					<div class="w-10">
-						<div class="flex justify-center">
-							<CircleUserRound size={30} />
+						<div class="flex justify-center rounded-full">
+							{#if data.user?.avatar !== ''}
+								<img
+									src={`${POCKETBASE_URL}/api/files/${data.user?.collectionId}/${data.user?.id}/${data.user?.avatar}`}
+									alt="Profile"
+									class="rounded-full"
+								/>
+							{:else}
+								<img
+									src={`https://ui-avatars.com/api/?name=${data.user?.name}`}
+									alt="Uploading User"
+									class="size-8 rounded-full"
+								/>
+							{/if}
 						</div>
 					</div>
 				</div>
 				<ul
 					class="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
 				>
-					<li><p>{data.user.name}</p></li>
 					<li><a href="/profile">Profile</a></li>
+
 					<li>
 						<form action="/logout" method="post">
-							<button type="submit" class="flex items-center justify-center gap-2"
-								><LogOut />
-								Logout
-							</button>
+							<button type="submit"> Logout </button>
 						</form>
 					</li>
 				</ul>
