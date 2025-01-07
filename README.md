@@ -1,58 +1,78 @@
-# create-svelte
+# PhotoCloud
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+PhotoCloud is a modern, lightweight application built using **SvelteKit** and **PocketBase**. It allows users to upload, manage, and search for images. Users can also update their profiles, view their uploaded images, and manage their account with ease.
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+## Features
 
-## Creating a project
+- **User Authentication**
 
-If you're seeing this, you've probably already done this step. Congrats!
+  - Register and log in with a secure and seamless flow.
+  - Update profile information.
 
-```bash
-# create a new project in the current directory
-npx sv create
+- **Image Management**
 
-# create a new project in my-app
-npx sv create my-app
-```
+  - Upload images to the platform.
+  - View your uploaded images in a user-friendly interface.
+  - Search for images based on various filters or keywords.
+  - Update and delete your uploaded images.
 
-## Developing
+- **Search Capabilities**
+  - Find images using keywords and filters to locate your favorite content quickly.
+- **Modern UI**
+  - Clean and responsive design with **TailwindCSS** and **DaisyUI** component library.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Tech Stack
 
-```bash
-npm run dev
+- **SvelteKit**: The framework used for building the frontend with modern, reactive components.
+- **PocketBase**: A lightweight backend database solution for handling authentication, data storage, and real-time updates.
+- **TailwindCSS**: A utility-first CSS framework for building fast and responsive designs.
+- **DaisyUI**: A TailwindCSS-based component library for pre-designed and customizable UI components.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Installation
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+To set up PhotoCloud on your local machine, follow these steps:
 
-## Building
+### Prerequisites
 
-To build your library:
+Ensure you have the following installed:
 
-```bash
-npm run package
-```
+- [Bun](https://bun.sh/)
+- #### For Makefile : [MinGW](https://www.mingw-w64.org/downloads/#winlibscom)
 
-To create a production version of your showcase app:
+### Steps
 
-```bash
-npm run build
-```
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/SleepyMiner/ImageServer.git
+   cd ImageServer
+   bun install
+   ```
+2. Start the Pocketbase Server (Backend):
+   ```bash
+   make server
+   ```
+   > The Server will start at port - 8090.
+3. Start the UI (Frontend):
+   ```bash
+   bun dev
+   ```
+   > The Svelte application will start at port - 5173
 
-You can preview the production build with `npm run preview`.
+### Contribution Guidelines
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+#### We welcome contributions! To contribute:
 
-## Publishing
+1. Fork the repository.
+2. Create a new branch for your feature/bugfix.
+3. Submit a pull request with a clear description of the changes.
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
+### License
 
-To publish your library to [npm](https://www.npmjs.com):
+This project is licensed under the MIT License.
 
-```bash
-npm publish
-```
+### Acknowledgments
+
+- [SvelteKit Documentation](https://svelte.dev/docs/kit/introduction)
+- [PocketBase Documentation](https://pocketbase.io/docs/)
+- [TailwindCSS Documentation](https://tailwindcss.com/docs/)
+- [DaisyUI Documentation](https://daisyui.com/docs/)
