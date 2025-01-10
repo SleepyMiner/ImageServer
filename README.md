@@ -21,6 +21,11 @@ PhotoCloud is a modern, lightweight application built using **SvelteKit** and **
 - **Modern UI**
   - Clean and responsive design with **TailwindCSS** and **DaisyUI** component library.
 
+## TODO
+- Add update & delete feature to already uploaded images to their respective users.
+- Add feature to favourite images.
+- Add forget password function.
+
 ## Tech Stack
 
 - **SvelteKit**: The framework used for building the frontend with modern, reactive components.
