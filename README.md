@@ -21,6 +21,11 @@ PhotoCloud is a modern, lightweight application built using **SvelteKit** and **
 - **Modern UI**
   - Clean and responsive design with **TailwindCSS** and **DaisyUI** component library.
 
+## TODO
+- Add update & delete feature to already uploaded images to their respective users.
+- Add feature to favourite images.
+- Add forget password function.
+
 ## Tech Stack
 
 - **SvelteKit**: The framework used for building the frontend with modern, reactive components.
@@ -37,6 +42,8 @@ To set up PhotoCloud on your local machine, follow these steps:
 Ensure you have the following installed:
 
 - [Bun](https://bun.sh/)
+- [Pocketbase - Windows](https://github.com/pocketbase/pocketbase/releases/download/v0.24.1/pocketbase_0.24.1_windows_amd64.zip)
+- [Pocketbase - Linux & Mac](https://github.com/pocketbase/pocketbase/releases/download/v0.24.1/pocketbase_0.24.1_linux_amd64.zip)
 - #### For Makefile : [MinGW](https://www.mingw-w64.org/downloads/#winlibscom)
 
 ### Steps
@@ -48,11 +55,18 @@ Ensure you have the following installed:
    bun install
    ```
 2. Start the Pocketbase Server (Backend):
+   1. Make a new folder in the ImageServer directory named **pb** ***(Keep the folder name same as this)***
+   2. Extract the downloaded zip file
+   3. Paste the contents in the pb folder
+   4. Run the following command after
    ```bash
    make server
    ```
    > The Server will start at port - 8090.
-3. Start the UI (Frontend):
+   > > The Credentials for Admin Dashboard are - \
+   > > **Username** - test@example.com \
+   > > **Password** - 1234567890
+4. Start the UI (Frontend):
    ```bash
    bun dev
    ```
