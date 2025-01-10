@@ -66,6 +66,7 @@
 					class="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
 				>
 					<li><a href="/profile">Profile</a></li>
+					<li><a href="/profile/uploadedImages">Uploaded Images</a></li>
 
 					<li>
 						<form action="/logout" method="post">

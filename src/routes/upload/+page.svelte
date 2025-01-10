@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { enhance, applyAction } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
-	import { POCKETBASE_URL } from '$lib/utils';
 
 	let { data } = $props();
 	let loading: boolean = $state(false);

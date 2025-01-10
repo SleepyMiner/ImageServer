@@ -71,16 +71,20 @@
 <h1 class="mt-10 text-center text-xl">Personal Details</h1>
 
 <div class="flex flex-col items-center justify-center">
-	<label class="form-control w-full max-w-xs">
+	<label for="name" class="form-control w-full max-w-xs">
 		<div class="label">
 			<span class="label-text text-lg"> Name: </span>
 		</div>
-		<p class="rounded-full bg-base-200 p-2 text-lg">{data.userData?.name}</p>
 	</label>
-	<label class="form-control w-full max-w-xs">
+	<p id="name" class="w-full max-w-xs rounded-full bg-base-200 p-2 text-lg">
+		{data.userData?.name}
+	</p>
+	<label for="email" class="form-control w-full max-w-xs">
 		<div class="label">
 			<span class="label-text text-lg"> Email: </span>
 		</div>
-		<p class="rounded-full bg-base-200 p-2 text-lg">{data.userData?.email}</p>
 	</label>
+	<p id="email" class="w-full max-w-xs rounded-full bg-base-200 p-2 text-lg">
+		{data.userData?.email}
+	</p>
 </div>
